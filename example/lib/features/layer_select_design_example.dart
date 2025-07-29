@@ -51,12 +51,11 @@ class _LayerSelectDesignExampleState extends State<LayerSelectDesignExample>
         overlayChildBuilder: (rebuildStream, info, layer, interactions) {
           return ReactiveWidget(
             stream: rebuildStream,
-            builder: (_) => FloatSelectionOverlay(
+            builder: (context) => FloatSelectionOverlay(
               info: info,
               layer: layer,
               interactions: interactions,
               editorKey: editorKey,
-              safeArea: MediaQuery.viewPaddingOf(context),
               configs: const FloatSelectConfigs(
 
                   /// style: const FloatSelectStyle(),

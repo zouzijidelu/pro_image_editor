@@ -104,7 +104,10 @@ class _BackgroundRemoverExampleState extends State<BackgroundRemoverExample>
       callbacks: ProImageEditorCallbacks(
         onImageEditingStarted: onImageEditingStarted,
         onImageEditingComplete: onImageEditingComplete,
-        onCloseEditor: (editorMode) => onCloseEditor(editorMode: editorMode),
+        onCloseEditor: (editorMode) => onCloseEditor(
+          editorMode: editorMode,
+          enablePop: !isDesktopMode(context),
+        ),
         mainEditorCallbacks: MainEditorCallbacks(
           helperLines: HelperLinesCallbacks(onLineHit: vibrateLineHit),
         ),
