@@ -10,6 +10,7 @@ import 'package:pro_image_editor/pro_image_editor.dart';
 
 // Project imports:
 import '/core/mixin/example_helper.dart';
+import 'custom_filter_bottombar.dart';
 
 /// A widget that demonstrates a custom app bar and bottom bar layout.
 ///
@@ -186,12 +187,11 @@ class _CustomWidgetsExampleState extends State<CustomWidgetsExample>
             ),
           ),
           filterEditor: FilterEditorConfigs(
-            widgets: FilterEditorWidgets(
-              appBar: (filterEditor, rebuildStream) => ReactiveAppbar(
-                stream: rebuildStream,
-                builder: (_) => _appBarFilterEditor(filterEditor),
+              widgets: FilterEditorWidgets(
+                  bottomBar: (state, rebuildStream) => ReactiveWidget(builder: (context){
+                    return CustomFilterBottomBar(state: state);
+                  }, stream: rebuildStream)
               ),
-            ),
           ),
           blurEditor: BlurEditorConfigs(
             widgets: BlurEditorWidgets(
@@ -750,7 +750,10 @@ class _CustomWidgetsExampleState extends State<CustomWidgetsExample>
                       size: 22.0,
                       color: Colors.amber,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      paintEditor.setMode(PaintMode.blur);
+                      setState(() {});
+                    },
                   ),
                   ...List.generate(
                     paintModes.length,

@@ -7,6 +7,7 @@ import 'package:pro_image_editor/pro_image_editor.dart';
 
 // Project imports:
 import '/core/mixin/example_helper.dart';
+import 'custom_filter_bottombar.dart';
 
 /// A widget that demonstrates a standalone feature or functionality.
 ///
@@ -195,6 +196,13 @@ class _StandaloneExampleState extends State<StandaloneExample>
         ),
         configs: ProImageEditorConfigs(
           designMode: platformDesignMode,
+          filterEditor: FilterEditorConfigs(
+            widgets: FilterEditorWidgets(
+                bottomBar: (state, rebuildStream) => ReactiveWidget(builder: (context){
+                  return CustomFilterBottomBar(state: state);
+                }, stream: rebuildStream)
+            ),
+          )
         ),
       ),
     );
